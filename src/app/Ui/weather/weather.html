@@ -1,0 +1,94 @@
+<div class="weather-wrapper">
+  <div class="weather-hero">
+    <div class="container text-center">
+      <h1 class="hero-title">WeatherNow</h1>
+      <p class="hero-subtitle">Real-time weather for any city in the world</p>
+      <div class="search-box">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Enter city name..."
+          [(ngModel)]="city"
+          (keydown)="onKeyDown($event)">
+        <button class="search-btn" (click)="search()">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border text-light" role="status"></div>
+      <p class="mt-3 text-light">Fetching weather...</p>
+    </div>
+
+    <div *ngIf="error && !loading" class="alert alert-danger text-center">
+      {{ error }}
+    </div>
+
+    <ng-container *ngIf="!loading && !error && weather">
+      <div class="weather-card" [ngClass]="getBgClass(weather.weather[0].main)">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="city-name">{{ weather.name }}, {{ weather.sys.country }}</div>
+            <div class="weather-desc">{{ weather.weather[0].description | titlecase }}</div>
+            <div class="temp-main">{{ weather.main.temp | number:'1.0-0' }}°C</div>
+            <div class="feels-like">Feels like {{ weather.main.feels_like | number:'1.0-0' }}°C</div>
+            <div class="temp-range">
+              H: {{ weather.main.temp_max | number:'1.0-0' }}°C &nbsp;|&nbsp;
+              L: {{ weather.main.temp_min | number:'1.0-0' }}°C
+            </div>
+          </div>
+          <div class="col-md-6 text-center">
+            <img [src]="getIconUrl(weather.weather[0].icon)" [alt]="weather.weather[0].main" class="weather-icon">
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-label">Humidity</span>
+            <span class="stat-value">{{ weather.main.humidity }}%</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Wind</span>
+            <span class="stat-value">{{ weather.wind.speed }} m/s {{ getWindDirection(weather.wind.deg) }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Pressure</span>
+            <span class="stat-value">{{ weather.main.pressure }} hPa</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Visibility</span>
+            <span class="stat-value">{{ (weather.visibility / 1000) | number:'1.0-1' }} km</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Sunrise</span>
+            <span class="stat-value">{{ formatTime(weather.sys.sunrise) }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Sunset</span>
+            <span class="stat-value">{{ formatTime(weather.sys.sunset) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="forecast.length > 0">
+        <h3 class="section-title">5-Day Forecast</h3>
+        <div class="forecast-grid">
+          <div class="forecast-card" *ngFor="let day of forecast">
+            <p class="forecast-day">{{ formatDay(day.dt_txt) }}</p>
+            <img [src]="getIconUrl(day.weather[0].icon)" [alt]="day.weather[0].main" class="forecast-icon">
+            <p class="forecast-desc">{{ day.weather[0].description | titlecase }}</p>
+            <p class="forecast-temp">{{ day.main.temp | number:'1.0-0' }}°C</p>
+            <p class="forecast-range">
+              H:{{ day.main.temp_max | number:'1.0-0' }}° L:{{ day.main.temp_min | number:'1.0-0' }}°
+            </p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div *ngIf="!loading && !searched" class="empty-state text-center">
+      <p class="empty-text">Search for a city to see current weather and forecast</p>
+    </div>
+  </div>
+</div>

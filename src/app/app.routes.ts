@@ -1,0 +1,67 @@
+import { Routes } from '@angular/router';
+import { Home } from './Ui/home/home';
+import { About } from './Ui/about/about';
+import { Insights } from './Ui/insights/insights';
+import { Product } from './Ui/product/product';
+import { Careers } from './Ui/careers/careers';
+import { Contact } from './Ui/contact/contact';
+import { Blogs } from './Ui/blogs/blogs';
+import { Whitepapers } from './Ui/whitepapers/whitepapers';
+import { Webinars } from './Ui/webinars/webinars';
+import { Podcasts } from './Ui/podcasts/podcasts';
+import { SuccessStories } from './Ui/success-stories/success-stories';
+import { Industries } from './Ui/industries/industries/industries';
+import { Services } from './Ui/services/services/services';
+import { Mobility } from './Ui/industries/mobility/mobility';
+import { AerospaceDefence } from './Ui/industries/aerospace-defence/aerospace-defence';
+import { Locomotive } from './Ui/industries/locomotive/locomotive';
+import { CloudServices } from './Ui/services/cloud-services/cloud-services';
+import { CyberSecurity } from './Ui/services/cyber-security/cyber-security';
+import { DataEngineering } from './Ui/services/data-engineering/data-engineering';
+import { Devops } from './Ui/services/devops/devops';
+import { Gis } from './Ui/services/gis/gis';
+import { ProductDetail } from './Ui/product-detail/product-detail';
+import { QualityIsmsPolicy } from './Ui/about/quality-isms-policy/quality-isms-policy';
+import { Timeline } from './Ui/about/timeline/timeline';
+import { News } from './Ui/about/news/news';
+
+import { GivingBack } from './Ui/about/giving-back/giving-back';
+import { BankingFinance } from './Ui/industries/banking-finance/banking-finance';
+import { Healthcare } from './Ui/industries/healthcare/healthcare';
+import { Insurance } from './Ui/industries/insurance/insurance';
+import { Industrial } from './Ui/industries/industrial/industrial';
+import { Weather } from './Ui/weather/weather';
+
+export const routes: Routes = [
+	{ path: '', component: Home },
+	{ path: 'about', component: About },
+	{ path: 'about/quality-isms-policy', component: QualityIsmsPolicy },
+	{ path: 'about/timeline', component: Timeline },
+	{ path: 'about/news', component: News },
+	{ path: 'about/giving-back', component: GivingBack },
+	{ path: 'insights', component: Insights },
+	{ path: 'products', component: Product },
+	{ path: 'products/:id', component: ProductDetail },
+	{ path: 'careers', component: Careers },
+	{ path: 'contact', component: Contact },
+	{ path: 'blogs', component: Blogs },
+	{ path: 'whitepapers', component: Whitepapers },
+	{ path: 'webinars', component: Webinars },
+	{ path: 'podcasts', component: Podcasts },
+	{ path: 'success-stories', component: SuccessStories },
+	{ path: 'industries', component: Industries },
+	{ path: 'industries/banking-finance', component: BankingFinance },
+	{ path: 'industries/healthcare', component: Healthcare },
+	{ path: 'industries/insurance', component: Insurance },
+	{ path: 'industries/industrial', component: Industrial },
+	{ path: 'industries/mobility', component: Mobility },
+	{ path: 'industries/aerospace-defence', component: AerospaceDefence },
+	{ path: 'industries/locomotive', component: Locomotive },
+	{ path: 'services', component: Services },
+	{ path: 'services/cloud-services', component: CloudServices },
+	{ path: 'services/cyber-security', component: CyberSecurity },
+	{ path: 'services/data-engineering', component: DataEngineering },
+	{ path: 'services/devops', component: Devops },
+	{ path: 'services/gis', component: Gis },
+	{ path: 'weather' , component: Weather}
+];

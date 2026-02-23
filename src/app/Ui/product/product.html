@@ -1,0 +1,41 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto text-center">
+      <h2 class="mb-3">Products</h2>
+      <p class="lead">Explore our product offerings — platform components, accelerators and solutions that help organisations ship faster.</p>
+    </div>
+  </div>
+
+  <!-- Repeat the provided card-group 15 times (each group contains 3 cards) -->
+  <div *ngIf="loading" class="text-center my-5" aria-live="polite">
+    <div class="spinner-border" role="status" aria-hidden="true"></div>
+    <div class="mt-2">Loading products…</div>
+  </div>
+
+  <div *ngIf="error && !loading" class="alert alert-danger" role="alert">
+    {{ error }} <button class="btn btn-link" (click)="loadFromApi()">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error">
+    <!-- render a flat list — CSS grid will ensure 5-per-row on desktop -->
+    <div class="products-grid" role="list">
+      <div class="product-col" role="listitem" *ngFor="let card of flatCards">
+        <div class="card card-compact h-100 position-relative">
+          <a class="stretched-link" [routerLink]="['/products', card.id]" [attr.data-href]="'/products/' + card.id" aria-label="Open {{card.title}}"></a>
+          <img [src]="card.img" class="card-img-top small-img" [alt]="card.title" loading="lazy" decoding="async">
+          <div class="card-body d-flex flex-column">
+            <h6 class="card-title mb-1 text-truncate">{{ card.title }}</h6>
+            <p class="card-text small text-muted mb-2 text-truncate">{{ card.text }}</p>
+
+            <div class="d-flex align-items-center gap-2">
+              <button class="btn btn-sm btn-primary btn-buy-now" (click)="buyNow(card.id)" [attr.data-buy-href]="'/products/' + card.id + '?buy=true'">Buy now</button>
+            </div>
+
+            <!-- bottom price (from API) -->
+            <p class="card-price-bottom small text-dark mt-auto mb-0" [attr.data-price]="card.price">{{ card.displayPrice }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

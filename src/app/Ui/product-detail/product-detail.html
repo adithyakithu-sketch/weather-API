@@ -1,0 +1,25 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto text-center">
+      <h2>Product detail</h2>
+      <ng-container *ngIf="loading">
+        <div class="spinner-border" role="status" aria-hidden="true"></div>
+        <div class="mt-2">Loading product…</div>
+      </ng-container>
+      <ng-container *ngIf="error && !loading">
+        <div class="alert alert-danger">{{ error }}</div>
+      </ng-container>
+      <ng-container *ngIf="!loading && !error && product">
+        <img [src]="product.image" [alt]="product.title" class="mb-3" style="max-width:220px;max-height:220px;object-fit:contain;">
+        <h4 class="mb-2">{{ product.title }}</h4>
+        <div class="mb-2"><strong>Price:</strong> ${{ product.price }}</div>
+        <div class="mb-3"><strong>Description:</strong> {{ product.description }}</div>
+        <div *ngIf="product.category" class="mb-2"><strong>Category:</strong> {{ product.category }}</div>
+      </ng-container>
+      <ng-container *ngIf="!id">
+        <p>No product id provided.</p>
+      </ng-container>
+      <a class="btn btn-outline-primary mt-3" routerLink="/products">Back to products</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+/* Navbar: keep dropdown items compact and text-focused (no icons) */
+.dropdown-menu .dropdown-item {
+  display: block;
+  padding: .25rem 1rem;
+  white-space: nowrap; /* prevent awkward wrapping on desktop */
+}
+
+/* If an icon is added in future, prefer utility spacing rather than layout changes */
+.dropdown-menu .dropdown-item img.dropdown-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  display: inline-block;
+}
+

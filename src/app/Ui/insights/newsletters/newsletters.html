@@ -1,0 +1,21 @@
+<div class="container mt-5 text-center">
+  <app-hero img="https://source.unsplash.com/1200x600/?newsletter,mailing" title="Newsletters" subtitle="Curated product & platform insights" [maxWidth]="720"></app-hero>
+	<h2 class="mb-4">Newsletters</h2>
+	<p class="lead">Get the best of our writing in your inbox — monthly highlights, product thinking, and event updates.</p>
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+      <form class="input-group" (submit)="onSubscribe($event)">
+        <input class="form-control" type="email" placeholder="you@company.com" required>
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+      <p class="small text-muted mt-2">No spam — unsubscribe anytime.</p>
+    </div>
+  </div>
+  <hr class="my-4">
+  <h5>Recent issues</h5>
+  <ul class="list-unstyled text-start">
+    <li><strong>March 2025</strong> — Product telemetry and incident response</li>
+    <li><strong>February 2025</strong> — Cloud cost optimisation patterns</li>
+    <li><strong>January 2025</strong> — Data platforms for scale</li>
+  </ul>
+</div>

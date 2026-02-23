@@ -1,0 +1,15 @@
+<div class="hero-wrapper text-center py-5">
+  <img
+    class="hero-img img-fluid"
+    [attr.alt]="alt || title"
+    [src]="img"
+    [attr.srcset]="srcset"
+    loading="lazy"
+    decoding="async"
+    [style.maxWidth.px]="maxWidth"
+  />
+  <div class="container">
+    <h1 *ngIf="title" class="hero-title">{{ title }}</h1>
+    <p *ngIf="subtitle" class="hero-subtitle">{{ subtitle }}</p>
+  </div>
+</div>
